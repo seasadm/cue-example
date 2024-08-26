@@ -1,27 +1,20 @@
 package myapp
 
-deployment: {
+deploymentFrontend: {
 	apiVersion: "apps/v1"
 	kind:       "Deployment"
 	metadata: {
-		name: "myapp-backend"
-		labels: app: "backend"
+		name: "myapp-frontend"
+		labels: app: "frontend"
 	}
 	spec: {
 		replicas: 1
-		selector: matchLabels: app: "backend"
+		selector: matchLabels: app: "frontend"
 		template: {
-			metadata: labels: app: "backend"
+			metadata: labels: app: "frontend"
 			spec: containers: [{
-				name:  "backend"
-				image: _values.image
-				env: [{
-					name:  "DB_HOST"
-					value: _values.DB_HOST
-				}, {
-					name:  "DB_NAME"
-					value: "backend"
-				}]
+				name:  "frontend"
+				image: _values.imageFrontend
 				ports: [{
 					containerPort: 8080
 					name:          "api"
@@ -30,12 +23,12 @@ deployment: {
 		}
 	}
 }
-service: {
+serviceFrontend: {
 	apiVersion: "v1"
 	kind:       "Service"
 	metadata: name: "backend-service"
 	spec: {
-		selector: app: "backend"
+		selector: app: "frontend"
 		ports: [{
 			name:       "name-of-service-portapi"
 			protocol:   "TCP"

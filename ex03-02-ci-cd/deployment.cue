@@ -33,7 +33,7 @@ deployment: {
 service: {
 	apiVersion: "v1"
 	kind:       "Service"
-	metadata: name: "nginx-service"
+	metadata: name: "backend-service"
 	spec: {
 		selector: app: "backend"
 		ports: [{

@@ -1,6 +1,6 @@
 package myapp
 
-deployment: {
+deploymentBackend: {
 	apiVersion: "apps/v1"
 	kind:       "Deployment"
 	metadata: {
@@ -14,7 +14,7 @@ deployment: {
 			metadata: labels: app: "backend"
 			spec: containers: [{
 				name:  "backend"
-				image: _values.image
+				image: _values.imageBackend
 				env: [{
 					name:  "DB_HOST"
 					value: _values.DB_HOST
@@ -30,7 +30,7 @@ deployment: {
 		}
 	}
 }
-service: {
+serviceBackend: {
 	apiVersion: "v1"
 	kind:       "Service"
 	metadata: name: "backend-service"
